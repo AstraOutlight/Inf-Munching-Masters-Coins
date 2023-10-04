@@ -1,4 +1,3 @@
--- Create a CFrame using the provided values
 local cframe = CFrame.new(1280.4209, 35.0073318, 1217.65991, 1, 0, 0, 0, -0.865990162, -0.500061035, 0, 0.500061035, -0.865990162)
 
 -- Function to teleport the player to the specified CFrame
@@ -9,12 +8,29 @@ local function teleportPlayer(player)
     end
 end
 
-while true do
-    -- Teleport the player with the name "ENTER YOUR USERNAME HERE"
-    local playerToTeleport = game.Players:FindFirstChild("ENTER YOUR USERNAME HERE AGAIN")
-    if playerToTeleport then
-        teleportPlayer(playerToTeleport)
-    end
+local isTeleportEnabled = false
+
+local function toggleTeleport()
+    isTeleportEnabled = not isTeleportEnabled
     
-    wait(0.1)  -- Adjust the wait time (in seconds) between teleports as needed
+    if isTeleportEnabled then
+        while isTeleportEnabled do
+            local playerToTeleport = game.Players.LocalPlayer
+            if playerToTeleport then
+                teleportPlayer(playerToTeleport)
+            end
+            wait(0.1) 
+        end
+    end
 end
+
+local gui = Instance.new("ScreenGui")
+gui.Parent = game.Players.LocalPlayer.PlayerGui
+
+local toggleButton = Instance.new("TextButton")
+toggleButton.Text = "Toggle Teleport"
+toggleButton.Size = UDim2.new(0, 100, 0, 50)
+toggleButton.Position = UDim2.new(1, -110, 1, -60) -- Position at the bottom-right corner
+toggleButton.Parent = gui
+
+toggleButton.MouseButton1Click:Connect(toggleTeleport)
