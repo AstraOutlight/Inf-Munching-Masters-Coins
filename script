@@ -1,0 +1,20 @@
+-- Create a CFrame using the provided values
+local cframe = CFrame.new(1280.4209, 35.0073318, 1217.65991, 1, 0, 0, 0, -0.865990162, -0.500061035, 0, 0.500061035, -0.865990162)
+
+-- Function to teleport the player to the specified CFrame
+local function teleportPlayer(player)
+    local character = player.Character
+    if character then
+        character:SetPrimaryPartCFrame(cframe)
+    end
+end
+
+while true do
+    -- Teleport the player with the name "ENTER YOUR USERNAME HERE"
+    local playerToTeleport = game.Players:FindFirstChild("ENTER YOUR USERNAME HERE AGAIN")
+    if playerToTeleport then
+        teleportPlayer(playerToTeleport)
+    end
+    
+    wait(0.1)  -- Adjust the wait time (in seconds) between teleports as needed
+end
